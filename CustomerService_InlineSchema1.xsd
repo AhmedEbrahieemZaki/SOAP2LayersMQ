@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/Customer" xmlns="http://tempuri.org/Customer" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:mrm="http://tempuri.org/Customer" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/Customer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:element name="description" type="xsd:string"/>
+      <xsd:element name="debit" type="xsd:decimal"/>
+      <xsd:element name="credit" type="xsd:decimal"/>
+      <xsd:element name="balance" type="xsd:decimal"/>
+      <xsd:element name="ID" type="xsd:int"/>
+      <xsd:complexType name="CustomerReq">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" ref="mrm:ID"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CustomerRes">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" ref="mrm:balance"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" ref="mrm:credit"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" ref="mrm:debit"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" ref="mrm:description"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element ibmSchExtn:docRoot="true" name="CustomerReq" type="mrm:CustomerReq"/>
+      <xsd:element ibmSchExtn:docRoot="true" name="CustomerRes" type="mrm:CustomerRes"/>
+      <xsd:element name="faultcode" type="xsd:string"/>
+      <xsd:complexType name="faultcode">
+        <xsd:sequence>
+          <xsd:element ref="mrm:faultcode"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element ibmSchExtn:docRoot="true" name="faultcode1" type="mrm:faultcode"/>
+    </xsd:schema>

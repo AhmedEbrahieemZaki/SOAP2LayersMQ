@@ -1,0 +1,4 @@
+DECLARE ns NAMESPACE 'http://tempuri.org/Customer';
+DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+
+

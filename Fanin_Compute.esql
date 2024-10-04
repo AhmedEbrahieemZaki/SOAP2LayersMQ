@@ -1,0 +1,34 @@
+
+CREATE COMPUTE MODULE Fanin_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties  = InputRoot.Properties;
+		SET OutputRoot.MQMD = InputRoot.MQMD;
+	
+--		CREATE FIELD OutputRoot.JSON.Body.CustomerRes;
+--		CREATE FIELD OutputRoot.JSON.Body.CustomerRes.balance;
+--		CREATE FIELD OutputRoot.JSON.Body.CustomerRes.credit;
+--		CREATE FIELD OutputRoot.JSON.Body.CustomerRes.debit;
+--		CREATE FIELD OutputRoot.JSON.Body.CustomerRes.description;
+		
+--		CREATE FIELD OutputRoot.XMLNSC.soapenv:Body.ns:CustomerRes;
+--		create lastchild OF Environment NAME 'ResultGet' ;
+--	 
+ 		DECLARE dbsource CHARACTER 'bankCustomer';
+		DECLARE sc CHARACTER 'bank';
+		DECLARE tb CHARACTER 'account_balance';
+	 
+--	 	SET Environment.ResultGet[] =    SELECT P.balance , P.credit , P.debit , P.description
+--		FROM Database.{dbsource}.{sc}.{tb}  AS P WHERE P.ID = InputRoot.JSON.Data.ID ;
+
+--		SET OutputRoot.XMLNSC.CustomerRes.balance = Environment.ResultGet.balance;		
+		
+--		DECLARE outref REFERENCE TO OutputRoot.XMLNSC.soapenv:Body.ns:CustomerRes;
+		SET OutputRoot.XMLNSC.CustomerRes[]=SELECT P.balance , P.credit , P.debit , P.description
+		FROM Database.{dbsource}.{sc}.{tb}  AS P WHERE P.ID = InputRoot.JSON.Data.ID ;
+--		SET OutputRoot.JSON.Body.CustomerRes[] =  SELECT P.balance , P.credit , P.debit , P.description
+--		FROM Database.{dbsource}.{sc}.{tb}  AS P WHERE P.ID = InputRoot.JSON.Data.ID ;
+----		
+		RETURN TRUE;
+	END;
+END MODULE;

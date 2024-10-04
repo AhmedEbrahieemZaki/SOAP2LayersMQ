@@ -1,0 +1,14 @@
+
+
+CREATE COMPUTE MODULE SOAP_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CREATE FIELD OutputRoot.XMLNSC.Body.ns:CustomerRes;
+		DECLARE outref REFERENCE TO OutputRoot.XMLNSC.Body.ns:CustomerRes;
+		SET outref.ns:balance = 5500;
+		SET outref.ns:credit = 500;
+		SET outref.ns:debit = 500;
+		SET outref.ns:description = 'visaCard';
+		RETURN TRUE;
+	END;
+END MODULE;
